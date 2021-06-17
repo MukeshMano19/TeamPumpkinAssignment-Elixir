@@ -22,6 +22,10 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
+  config :pumpkin_assignment_elixir, PumpkinAssignmentElixir.Guardian,
+  issuer: "pumpkin_assignment_elixir",
+  secret_key: "O0YiifE0oJLe33YiOZTmJ0lfKfaDJWT1EUa0DL2NxjBuOyXIx56+V3BnptdQviSG"
+
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 

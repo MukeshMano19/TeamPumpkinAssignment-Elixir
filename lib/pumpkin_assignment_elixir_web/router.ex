@@ -1,22 +1,26 @@
 defmodule PumpkinAssignmentElixirWeb.Router do
   use PumpkinAssignmentElixirWeb, :router
 
-  pipeline :browser do
-    plug :accepts, ["html"]
-    plug :fetch_session
-    plug :fetch_flash
-    plug :protect_from_forgery
-    plug :put_secure_browser_headers
-  end
-
   pipeline :api do
+    plug CORSPlug, origins: "*"
     plug :accepts, ["json"]
   end
 
-  scope "/", PumpkinAssignmentElixirWeb do
-    pipe_through :browser
+  pipeline :authenticate do
+    plug(PumpkinAssignmentElixirWeb.Plugs.GuardianAuthPipeline)
+    plug(PumpkinAssignmentElixirWeb.Plugs.AssignUser)
+  end
 
-    get "/", PageController, :index
+  scope "/api", PumpkinAssignmentElixirWeb do
+    pipe_through :api
+    post("/sessions/login", SessionController, :login)
+  end
+
+  scope "/api", PumpkinAssignmentElixirWeb do
+    pipe_through([:api, :authenticate])
+
+    post("/sessions/logout", SessionController, :logout)
+    resources "/users", UserController, except: [:delete]
   end
 
   # Other scopes may use custom stacks.
