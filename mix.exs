@@ -44,6 +44,7 @@ defmodule PumpkinAssignmentElixir.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:guardian, "~> 1.0"},
+      {:cors_plug, "~> 2.0"},
     ]
   end
 

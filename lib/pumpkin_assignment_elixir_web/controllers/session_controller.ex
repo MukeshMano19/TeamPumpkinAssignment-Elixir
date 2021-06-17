@@ -1,7 +1,7 @@
 defmodule PumpkinAssignmentElixirWeb.SessionController do
   use PumpkinAssignmentElixirWeb, :controller
   alias PumpkinAssignmentElixir.Users.Auth
-  action_fallback PumpkinAssignmentElixir.FallbackController
+  action_fallback PumpkinAssignmentElixirWeb.FallbackController
 
   def login(conn, %{"email" => email_id, "password" => password}) do
     email = String.downcase(email_id)

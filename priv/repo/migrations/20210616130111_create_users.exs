@@ -6,7 +6,7 @@ defmodule PumpkinAssignmentElixir.Repo.Migrations.CreateUsers do
       add :name, :string
       add :email, :string
       add :type, :string
-      add(:password, :string, virtual: true)
+      add(:password, :string)
 
       timestamps()
     end

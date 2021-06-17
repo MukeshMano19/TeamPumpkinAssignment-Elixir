@@ -22,7 +22,7 @@ defmodule PumpkinAssignmentElixir.Users.Auth do
   defp check_password(user, password) do
     case user.password == password do
       true ->
-        if user.active == true, do: user, else: :inactive
+        user
 
       false ->
         :invalid_credentials
