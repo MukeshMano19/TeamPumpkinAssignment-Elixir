@@ -13,18 +13,13 @@ defmodule PumpkinAssignmentElixirWeb.Router do
 
   scope "/api", PumpkinAssignmentElixirWeb do
     pipe_through :api
-    post("/sessions/login", SessionController, :login)
+    post("/user/login", SessionController, :login)
+    post("/user/signUp", UserController, :create)
   end
 
   scope "/api", PumpkinAssignmentElixirWeb do
     pipe_through([:api, :authenticate])
 
-    post("/sessions/logout", SessionController, :logout)
-    resources "/users", UserController, except: [:delete]
+    post("/user/logout", SessionController, :logout)
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", PumpkinAssignmentElixirWeb do
-  #   pipe_through :api
-  # end
 end
