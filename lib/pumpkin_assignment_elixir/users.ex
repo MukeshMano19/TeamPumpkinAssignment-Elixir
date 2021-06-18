@@ -39,8 +39,14 @@ defmodule PumpkinAssignmentElixir.Users do
 
   def get_user_by_email(email) do
     case Repo.get_by(User, email: email) do
-      nil -> {:error, :not_found}
-      user -> user
+      nil ->
+        case Repo.get_by(User, name: email) do
+          nil -> {:error, :not_found}
+          user -> user
+        end
+
+      user ->
+        user
     end
   end
 
