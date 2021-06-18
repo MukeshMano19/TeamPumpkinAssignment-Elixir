@@ -2,16 +2,16 @@ defmodule PumpkinAssignmentElixir.Users.Auth do
   alias PumpkinAssignmentElixir.Users
 
   def authenticate(email, password) do
-    user = Users.get_user_by_email(email)
+    case Users.get_user_by_email(email) do
+      {:error, _} ->
+        {:error, "Invalid Credentials"}
 
-    if is_nil(user) do
-      {:error, "Invalid Credentials"}
-    else
-      case check_password(user, password) do
-        :invalid_credentials -> {:error, "Invalid Credentials"}
-        :inactive -> {:error, "User Id is inactive"}
-        _ -> {:ok, user}
-      end
+      user ->
+        case check_password(user, password) do
+          :invalid_credentials -> {:error, "Invalid Credentials"}
+          :inactive -> {:error, "User Id is inactive"}
+          _ -> {:ok, user}
+        end
     end
   end
 

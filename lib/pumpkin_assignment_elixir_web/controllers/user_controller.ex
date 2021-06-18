@@ -13,12 +13,9 @@ defmodule PumpkinAssignmentElixirWeb.UserController do
   def create(conn, params) do
     case Users.create_user(params) do
       {:ok, %User{} = user} ->
-        conn
-        |> put_status(:created)
-        |> render("message.json", message: "saved")
-
-      {:error, changeset} ->
-        {:error, changeset}
+       IO.inspect(user) 
+        json(conn, %{message: "Sign Up Success"})
+      {:error, changeset} -> {:error, changeset}
     end
   end
 end

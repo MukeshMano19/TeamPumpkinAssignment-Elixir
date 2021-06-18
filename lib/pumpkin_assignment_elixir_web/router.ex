@@ -15,11 +15,15 @@ defmodule PumpkinAssignmentElixirWeb.Router do
     pipe_through :api
     post("/user/login", SessionController, :login)
     post("/user/signUp", UserController, :create)
+    get("/image/:id", ImageController, :get_image)
   end
 
-  scope "/api", PumpkinAssignmentElixirWeb do
+  scope "/api/user/:user_id", PumpkinAssignmentElixirWeb do
     pipe_through([:api, :authenticate])
 
-    post("/user/logout", SessionController, :logout)
+    post("/logout", SessionController, :logout)
+
+    get("/images", ImageController, :index)
+    post("/image/upload", ImageController, :create)
   end
 end

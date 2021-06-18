@@ -17,8 +17,13 @@ defmodule PumpkinAssignmentElixir.Images do
       [%Image{}, ...]
 
   """
-  def list_images do
-    Repo.all(Image)
+  def list_images(%{"user_id" => contributor_id, "NU" => _status}) do
+    Repo.all(Image) |> Repo.preload(:contributor)
+  end
+
+  def list_images(%{"user_id" => contributor_id}) do
+    Repo.all(from(i in Image, where: i.contributor_id == ^contributor_id))
+    |> Repo.preload(:contributor)
   end
 
   @doc """
@@ -49,9 +54,15 @@ defmodule PumpkinAssignmentElixir.Images do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_image(attrs \\ %{}) do
+  def create_image(%{"file" => file, "user_id" => user_id} = attrs \\ %{}) do
+    {:ok, image_binary} = File.read(file.path)
+
+    data =
+      Map.put(attrs, "image_binary", image_binary)
+      |> Map.put("contributor_id", String.to_integer(user_id))
+
     %Image{}
-    |> Image.changeset(attrs)
+    |> Image.changeset(data)
     |> Repo.insert()
   end
 

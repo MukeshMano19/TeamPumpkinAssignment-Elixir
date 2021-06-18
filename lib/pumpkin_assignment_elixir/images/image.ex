@@ -5,7 +5,8 @@ defmodule PumpkinAssignmentElixir.Images.Image do
 
   schema "images" do
     field :name, :string
-    field :total_downloads, :integer
+    field :total_downloads, :integer, default: 0
+    field :category, :integer
     field(:image_binary, :string)
     belongs_to :contributor, User
 
@@ -15,7 +16,7 @@ defmodule PumpkinAssignmentElixir.Images.Image do
   @doc false
   def changeset(image, attrs) do
     image
-    |> cast(attrs, [:name, :total_downloads, :image_binary, :contributor_id])
+    |> cast(attrs, [:name, :total_downloads, :image_binary, :category, :contributor_id])
     |> validate_required([:name, :total_downloads])
   end
 end

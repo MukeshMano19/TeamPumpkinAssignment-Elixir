@@ -18,30 +18,30 @@ alias PumpkinAssignmentElixir.{Users, Images}
   })
 
 # Images Creation
-Images.create_image(%{
-  name: "img1",
-  total_downloads: 5,
-  image_binary: "",
-  user_id: contributor.id
-})
+# Images.create_image(%{
+#   name: "img1",
+#   total_downloads: 5,
+#   image_binary: "",
+#   user_id: contributor.id
+# })
 
-Images.create_image(%{
-  name: "img2",
-  total_downloads: 5,
-  image_binary: "",
-  user_id: contributor.id
-})
+# Images.create_image(%{
+#   name: "img2",
+#   total_downloads: 5,
+#   image_binary: "",
+#   user_id: contributor.id
+# })
 
-Images.create_image(%{
-  name: "img3",
-  total_downloads: 5,
-  image_binary: "",
-  user_id: contributor.id
-})
+# Images.create_image(%{
+#   name: "img3",
+#   total_downloads: 5,
+#   image_binary: "",
+#   user_id: contributor.id
+# })
 
-Images.create_image(%{
-  name: "img4",
-  total_downloads: 5,
-  image_binary: "",
-  user_id: contributor.id
-})
+# Images.create_image(%{
+#   name: "img4",
+#   total_downloads: 5,
+#   image_binary: "",
+#   user_id: contributor.id
+# })
