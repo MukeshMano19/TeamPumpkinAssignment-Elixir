@@ -16,6 +16,7 @@ defmodule PumpkinAssignmentElixirWeb.Router do
     post("/user/login", SessionController, :login)
     post("/user/signUp", UserController, :create)
     get("/image/:id", ImageController, :get_image)
+    get("/image/:id/download", ImageController, :download_image)
   end
 
   scope "/api/user/:user_id", PumpkinAssignmentElixirWeb do
@@ -25,5 +26,6 @@ defmodule PumpkinAssignmentElixirWeb.Router do
 
     get("/images", ImageController, :index)
     post("/image/upload", ImageController, :create)
+    put("/image/:id/updateTotalDownloads", ImageController, :update_total_downloads)
   end
 end

@@ -84,6 +84,14 @@ defmodule PumpkinAssignmentElixir.Images do
     |> Repo.update()
   end
 
+  def update_total_downloads(id) do
+    image = get_image!(id)
+
+    image
+    |> Image.count_changeset(%{total_downloads: image.total_downloads + 1})
+    |> Repo.update()
+  end
+
   @doc """
   Deletes a image.
 

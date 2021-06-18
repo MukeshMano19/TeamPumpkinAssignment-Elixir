@@ -27,4 +27,18 @@ defmodule PumpkinAssignmentElixirWeb.ImageController do
     |> put_resp_content_type("png")
     |> send_resp(200, image.image_binary)
   end
+
+  def download_image(conn, %{"id" => id}) do
+    image = Images.get_image!(id)
+
+    conn
+    |> put_resp_content_type("image/png")
+    |> put_resp_header("content-disposition", "attachment; filename=#{image.name}.png")
+    |> send_resp(200, image.image_binary)
+  end
+
+  def update_total_downloads(conn, %{"id" => id}) do
+    _image = Images.update_total_downloads(id)
+    json(conn, %{message: "Success"})
+  end
 end

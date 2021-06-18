@@ -19,4 +19,8 @@ defmodule PumpkinAssignmentElixir.Images.Image do
     |> cast(attrs, [:name, :total_downloads, :image_binary, :category, :contributor_id])
     |> validate_required([:name, :total_downloads])
   end
+
+  def count_changeset(image, attrs) do
+    image |> cast(attrs, [:total_downloads])
+  end
 end
