@@ -16,7 +16,8 @@ defmodule PumpkinAssignmentElixirWeb.ImageView do
       name: image.name,
       category: image.category,
       total_downloads: image.total_downloads,
-      contributor: image.contributor.name
+      contributor: image.contributor.name,
+      batch_unique_id: image.batch_unique_id
     }
   end
 end

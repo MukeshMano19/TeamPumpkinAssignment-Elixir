@@ -6,6 +6,7 @@ defmodule PumpkinAssignmentElixir.Repo.Migrations.CreateImages do
       add :name, :string
       add :total_downloads, :integer, default: 0
       add :category, :integer
+      add :batch_unique_id, :string
       add(:image_binary, :binary)
       add(:contributor_id, references(:users))
 

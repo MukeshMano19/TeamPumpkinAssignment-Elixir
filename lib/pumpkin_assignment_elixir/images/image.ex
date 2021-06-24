@@ -7,6 +7,7 @@ defmodule PumpkinAssignmentElixir.Images.Image do
     field :name, :string
     field :total_downloads, :integer, default: 0
     field :category, :integer
+    field :batch_unique_id, :string
     field(:image_binary, :string)
     belongs_to :contributor, User
 
@@ -16,7 +17,7 @@ defmodule PumpkinAssignmentElixir.Images.Image do
   @doc false
   def changeset(image, attrs) do
     image
-    |> cast(attrs, [:name, :total_downloads, :image_binary, :category, :contributor_id])
+    |> cast(attrs, [:name, :total_downloads, :image_binary, :category, :batch_unique_id, :contributor_id])
     |> validate_required([:name, :total_downloads])
   end
 

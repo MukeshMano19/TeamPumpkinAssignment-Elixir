@@ -33,7 +33,7 @@ defmodule PumpkinAssignmentElixirWeb.ImageController do
 
     conn
     |> put_resp_content_type("image/png")
-    |> put_resp_header("content-disposition", "attachment; filename=#{image.name}.png")
+    |> put_resp_header("content-disposition", "attachment;")
     |> send_resp(200, image.image_binary)
   end
 
